@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -I . -g
 TARGET =p0
-OBJS = main.o BST.o FileManager.o
+OBJS = main.o BinarySearchTree.o FileManager.o Options.o Application.o
 .SUFFIXES: .cpp .o
 
 $(TARGET): $(OBJS)
