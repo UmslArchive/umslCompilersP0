@@ -7,7 +7,7 @@
 
 //Node constructors.
 Node::Node() : 
-    key(0), left(nullptr), right(nullptr), parent(nullptr) 
+    key(0), left(NULL), right(NULL), parent(NULL) 
 {}
 
 Node::Node(int _key, Node* _left, Node* _right, Node* _parent) :
@@ -16,7 +16,7 @@ Node::Node(int _key, Node* _left, Node* _right, Node* _parent) :
 
 //BinarySearchTree constructors.
 BinarySearchTree::BinarySearchTree() : 
-    root(nullptr)  
+    root(NULL)  
 {}
 
 BinarySearchTree::BinarySearchTree(std::string file) {
@@ -37,7 +37,7 @@ void BinarySearchTree::remove(const int key) {
 }
 
 Node* BinarySearchTree::search(const int key) {
-    return nullptr;
+    return NULL;
 }
 
 int BinarySearchTree::successor(const int key) {
