@@ -6,7 +6,7 @@
 #include "BinarySearchTree.hpp"
 
 //Node constructors.
-Node::Node() : 
+Node::Node() :
     key(0), left(NULL), right(NULL), parent(NULL) 
 {}
 

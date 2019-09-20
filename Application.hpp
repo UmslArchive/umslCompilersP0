@@ -15,9 +15,11 @@ public:
     void run(int argc, char* argv[]);
 
 private:
-    void getArgs();
     BinarySearchTree bst;
     Arguments arguments;
+    FileManager fileManager;
+
+    void getArgs();
 };
 
 #endif

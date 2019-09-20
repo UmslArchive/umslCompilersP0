@@ -15,9 +15,7 @@ private:
 
 public:    
     void parseArgs(int argc, char* argv[]);
-
     void handleFileRedirection();
 };
-
 
 #endif
