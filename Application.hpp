@@ -6,18 +6,18 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "Options.hpp"
+#include "Arguments.hpp"
 #include "BinarySearchTree.hpp"
 #include "FileManager.hpp"
 
 class Application {
 public:
-    void run();
+    void run(int argc, char* argv[]);
 
 private:
     void getArgs();
-    Options options;
     BinarySearchTree bst;
+    Arguments arguments;
 };
 
 #endif

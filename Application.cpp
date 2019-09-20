@@ -5,6 +5,10 @@
 
 #include "Application.hpp"
 
-void Application::run() {
-    std::cout << "Application running..." << std::endl;
+void Application::run(int argc, char* argv[]) {
+    if(argc < 2)
+        arguments.handleFileRedirection();
+
+    arguments.parseArgs(argc, argv);
+
 }
