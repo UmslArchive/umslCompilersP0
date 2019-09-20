@@ -1,7 +1,10 @@
-#include <iostream>
+#include "Application.hpp"
 
-#include "BST.hpp"
+int main(int argc, char* argv[]) {
 
-int main(int argc, char** argv) {
+    Application p0;
 
+    p0.run();
+
+    return 0;
 }
