@@ -6,8 +6,8 @@
 #include "Arguments.hpp"
 
 void Arguments::parseArgs(int argc, char* argv[]) {
-    for(int i = 0; i < argc; ++i) {
-        std::cout << argv[i] << std::endl;
+    if(argc > 2){
+        std::cerr << "Too many arguments. " << std::endl;
     }
 }
 
