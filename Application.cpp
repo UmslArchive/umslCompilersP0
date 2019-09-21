@@ -6,8 +6,7 @@
 #include "Application.hpp"
 
 void Application::run(int argc, char* argv[]) {
-    if(argc == 1)
-        arguments.handleFileRedirection();
-
-    arguments.parseArgs(argc, argv);
+    if(!arguments.doAll(argc, argv)) {
+        std::cerr << "Error: Arguments could not be handled." << std::endl;
+    }
 }

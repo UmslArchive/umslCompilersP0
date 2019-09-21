@@ -9,13 +9,20 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector>
 
 class Arguments {
 private:
+    std::string cliInput;
+    std::vector<std::string> tokens;
 
-public:    
-    void parseArgs(int argc, char* argv[]);
+    bool parseArgs(int argc, char* argv[]);
     void handleFileRedirection();
+    void tokenize();
+
+public:
+    Arguments();
+    bool doAll(int argc, char* argv[]);
 };
 
 #endif

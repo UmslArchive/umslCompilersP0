@@ -8,7 +8,6 @@
 
 #include "Arguments.hpp"
 #include "BinarySearchTree.hpp"
-#include "FileManager.hpp"
 
 class Application {
 public:
@@ -17,9 +16,6 @@ public:
 private:
     BinarySearchTree bst;
     Arguments arguments;
-    FileManager fileManager;
-
-    void getArgs();
 };
 
 #endif
