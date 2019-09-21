@@ -10,6 +10,7 @@
 #include <string>
 #include <limits>
 #include <vector>
+#include <sstream>
 
 class Arguments {
 private:

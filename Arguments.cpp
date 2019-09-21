@@ -8,13 +8,24 @@
 Arguments::Arguments() : cliInput("") {}
 
 bool Arguments::doAll(int argc, char* argv[]) {
+    bool success = false;
+
+    //Handle either simulate keyboard input or file redirection.
     if(argc == 1) {
         handleFileRedirection();
-        return true;
+        success = true;
     }
+
+    //Otherwise need to load a file.
     else {
-        return parseArgs(argc, argv);
+        success = parseArgs(argc, argv);
     }
+
+    //After either input method, the cliInput string must be tokenized.
+    if(success)
+        tokenize();
+
+    return success;
 }
 
 bool Arguments::parseArgs(int argc, char* argv[]) {
@@ -77,9 +88,27 @@ void Arguments::handleFileRedirection() {
     //Clear the std::cin buffer.
     std::cin.ignore(std::numeric_limits<std::streamsize>::max());
 
+    std::cout << std::endl;
+
     return;
 }
 
-void Arguments::tokenize() {
+void Arguments::tokenize() {  
+    //Parse the cliInput string for tokens and push into tokens vector.
+    std::stringstream ss(cliInput);
+    std::string token;
+    while(ss >> token) {
+        tokens.push_back(token);
+    }
 
+
+    //DEBUG
+    std::cout << "TOKENS:\n";
+    if(tokens.empty()) {
+        std::cout << "-NO TOKENS-" << std::endl;
+        return;
+    }
+    for(const auto &token : tokens) {
+        std::cout << "\"" << token << "\"\n";
+    }
 }
