@@ -12,21 +12,20 @@
 #include <vector>
 #include <sstream>
 
-#include "FileManager.hpp"
-
 class Arguments {
 private:
     std::string cliInput;
+    std::string fileString;
     std::vector<std::string> tokens;
 
     bool parseArgs(int argc, char* argv[]);
     void handleFileRedirection();
     void tokenize();
-    bool readFromFile(const std::string path, FileManager* fm);
+    bool readFromFile(const std::string path);
 
 public:
     Arguments();
-    bool doAll(int argc, char* argv[], FileManager* fm);
+    bool doAll(int argc, char* argv[]);
 };
 
 #endif

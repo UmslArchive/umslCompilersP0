@@ -5,9 +5,9 @@
 
 #include "Arguments.hpp"
 
-Arguments::Arguments() : cliInput("") {}
+Arguments::Arguments() : cliInput(""), fileString("") {}
 
-bool Arguments::doAll(int argc, char* argv[], FileManager* fm) {
+bool Arguments::doAll(int argc, char* argv[]) {
     bool success = false;
 
     //Handle either simulate keyboard input or file redirection.
@@ -18,8 +18,19 @@ bool Arguments::doAll(int argc, char* argv[], FileManager* fm) {
 
     //Otherwise need to load a file.
     else {
-        success = parseArgs(argc, argv);
-        success = readFromFile(cliInput, fm);
+        //Get the file name.
+        if(!parseArgs(argc, argv)) {
+            std::cerr << "Error: Function: parseArgs(int, char**)" << std::endl;
+            return false;
+        }
+
+        //Read entire file into fileString.
+        if(!readFromFile(cliInput)) {
+            std::cerr << "Error: Function: readFromFile(std::string)" << std::endl;
+            return false;
+        }
+        
+        success = true;
     }
 
     //After either input method, the cliInput string must be tokenized.
@@ -114,7 +125,8 @@ void Arguments::tokenize() {
     }
 }
 
-bool Arguments::readFromFile(const std::string path, FileManager* fm) {
+bool Arguments::readFromFile(const std::string path) {
     //TODO
+    std::cout << "check" << std::endl;
     return true;
 }
