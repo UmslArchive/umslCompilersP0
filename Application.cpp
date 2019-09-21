@@ -5,8 +5,15 @@
 
 #include "Application.hpp"
 
+Application::Application() : fileManager(NULL) {
+    fileManager = new FileManager();
+}
+
 void Application::run(int argc, char* argv[]) {
-    if(!arguments.doAll(argc, argv)) {
+    if(!arguments.doAll(argc, argv, fileManager)) {
         std::cerr << "Error: Arguments could not be handled." << std::endl;
     }
+
+    delete fileManager;
+    fileManager = NULL;
 }

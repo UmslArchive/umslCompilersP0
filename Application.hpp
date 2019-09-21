@@ -8,14 +8,18 @@
 
 #include "Arguments.hpp"
 #include "BinarySearchTree.hpp"
+#include "FileManager.hpp"
 
 class Application {
 public:
+    Application();
+    
     void run(int argc, char* argv[]);
 
 private:
     BinarySearchTree bst;
     Arguments arguments;
+    FileManager* fileManager;
 };
 
 #endif

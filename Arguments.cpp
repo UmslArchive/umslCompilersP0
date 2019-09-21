@@ -7,7 +7,7 @@
 
 Arguments::Arguments() : cliInput("") {}
 
-bool Arguments::doAll(int argc, char* argv[]) {
+bool Arguments::doAll(int argc, char* argv[], FileManager* fm) {
     bool success = false;
 
     //Handle either simulate keyboard input or file redirection.
@@ -19,6 +19,7 @@ bool Arguments::doAll(int argc, char* argv[]) {
     //Otherwise need to load a file.
     else {
         success = parseArgs(argc, argv);
+        success = readFromFile(cliInput, fm);
     }
 
     //After either input method, the cliInput string must be tokenized.
@@ -111,4 +112,9 @@ void Arguments::tokenize() {
     for(const auto &token : tokens) {
         std::cout << "\"" << token << "\"\n";
     }
+}
+
+bool Arguments::readFromFile(const std::string path, FileManager* fm) {
+    //TODO
+    return true;
 }

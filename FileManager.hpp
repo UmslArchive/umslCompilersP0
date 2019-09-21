@@ -6,6 +6,8 @@
 #ifndef FILEMANAGER_H
 #define FILEMANAGER_H
 
+#include <iostream>
+
 class FileManager {
 private:
 
