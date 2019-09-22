@@ -22,13 +22,11 @@ BinarySearchTree::BinarySearchTree(int _outputState, std::string fileName) :
 {
     //DEBUG
     //std::cout << "STATE: " << outputState << std::endl;
-    std::cout << "outFileName: " << outFileName << std::endl;
+    //std::cout << "outFileName: " << outFileName << std::endl;
 }
 
 //Destructor
-BinarySearchTree::~BinarySearchTree() {
-
-}
+BinarySearchTree::~BinarySearchTree() {}
 
 void BinarySearchTree::buildTree(const std::vector<std::string>& data) {
     for(int i = 0; i < data.size(); ++i) {

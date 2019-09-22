@@ -31,14 +31,16 @@ void Application::run(int argc, char* argv[]) {
     bst->buildTree(arguments.getTokens());
 
     //Output.
-    std::cout << "Preorder:\n";
+    //std::cout << "Preorder:\n";
     bst->printPreorder(bst->getRoot());
 
-    std::cout << "\nInorder:\n";
+    //std::cout << "\nInorder:\n";
     bst->printInorder(bst->getRoot());
 
-    std::cout << "\nPostorder:\n";
+    //std::cout << "\nPostorder:\n";
     bst->printPostOrder(bst->getRoot());
+
+    std::cout << "Success." << std::endl;
 
     return;
 }
