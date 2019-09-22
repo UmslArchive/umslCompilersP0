@@ -28,13 +28,13 @@ struct Node {
 class BinarySearchTree {
 private:
     Node* root;
-    
-    Arguments::InvokeState outputState;
+
+    int outputState;
     std::string outFileName;
 
 public:
     BinarySearchTree();
-    BinarySearchTree(Arguments::InvokeState outputState, std::string fileName);
+    BinarySearchTree(int outputState, std::string fileName);
     ~BinarySearchTree();
 
     void buildTree(const std::vector<std::string>& data);

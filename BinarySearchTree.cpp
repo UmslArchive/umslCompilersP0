@@ -17,7 +17,7 @@ Node::Node(int _key, std::string datum, Node* _left, Node* _right, Node* _parent
 //BinarySearchTree constructor.
 BinarySearchTree::BinarySearchTree() : root(NULL) {}
 
-BinarySearchTree::BinarySearchTree(Arguments::InvokeState _outputState, std::string fileName) :
+BinarySearchTree::BinarySearchTree(int _outputState, std::string fileName) :
     outputState(_outputState), outFileName(fileName), root(NULL) 
 {
     //DEBUG
@@ -101,7 +101,7 @@ void BinarySearchTree::printInorder(Node* node, int level) {
         //Write to file.
         std::fstream outFile;
         std::string filename;
-        if(outputState == Arguments::InvokeState::FILE_READ) {
+        if(outputState == 1) {
             filename = outFileName + ".inorder";
         }
         else {
@@ -134,7 +134,7 @@ void BinarySearchTree::printPreorder(Node* node, int level) {
         //Write to file.
         std::fstream outFile;
         std::string filename;
-        if(outputState == Arguments::InvokeState::FILE_READ) {
+        if(outputState == 1) {
             filename = outFileName + ".preorder";
         }
         else {
@@ -171,7 +171,7 @@ void BinarySearchTree::printPostOrder(Node* node, int level) {
         //Write to file.
         std::fstream outFile;
         std::string filename;
-        if(outputState == Arguments::InvokeState::FILE_READ) {
+        if(outputState == 1) {
             filename = outFileName + ".postorder";
         }
         else {

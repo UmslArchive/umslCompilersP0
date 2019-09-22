@@ -17,19 +17,14 @@ class Arguments {
 public:
     Arguments();
 
-    enum InvokeState {
-        FILE_READ,
-        REDIRECTED
-    };
-
     bool handleArguments(int argc, char* argv[]);
 
     const std::vector<std::string>& getTokens() const { return tokens; }
-    InvokeState getState() { return outputState; }
+    int getState() { return outputState; }
     std::string getInfileName() { return infileName; }
 
 private:
-    InvokeState outputState;
+    int outputState; //readfile 1, redirect 0
 
     std::string cliInput;
     std::string infileName;

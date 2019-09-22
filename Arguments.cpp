@@ -14,7 +14,7 @@ bool Arguments::handleArguments(int argc, char* argv[]) {
     if(argc == 1) {
         handleFileRedirOrKeyboardSim();
         tokenize(cliInput);
-        outputState = REDIRECTED;
+        outputState = 0;
         success = true;
     }
 
@@ -33,7 +33,7 @@ bool Arguments::handleArguments(int argc, char* argv[]) {
         }
         
         tokenize(fileContents);
-        outputState = FILE_READ;
+        outputState = 1;
         success = true;
     }
 

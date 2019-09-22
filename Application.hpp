@@ -17,7 +17,7 @@ public:
 private:
     BinarySearchTree* bst;
     Arguments arguments;
-    Arguments::InvokeState outputState;
+    int outputState;
 };
 
 #endif
