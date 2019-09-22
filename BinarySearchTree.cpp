@@ -107,7 +107,7 @@ void BinarySearchTree::printInorder(Node* node, int level) {
         else {
             filename = "tree.inorder";
         }
-        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
         for(int i = 0; i < node->data.size(); ++i) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
             outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
@@ -140,7 +140,7 @@ void BinarySearchTree::printPreorder(Node* node, int level) {
         else {
             filename = "tree.preorder";
         }
-        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
         for(int i = 0; i < node->data.size(); ++i) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
             outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
@@ -177,7 +177,7 @@ void BinarySearchTree::printPostOrder(Node* node, int level) {
         else {
             filename = "tree.postorder";
         }
-        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
         for(int i = 0; i < node->data.size(); ++i) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
             outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
