@@ -11,6 +11,7 @@
 #include <limits>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
 class Arguments {
 private:
@@ -20,12 +21,15 @@ private:
 
     bool parseArgs(int argc, char* argv[]);
     void handleFileRedirection();
-    void tokenize();
+    void tokenize(std::string str);
     bool readFromFile(const std::string path);
 
 public:
     Arguments();
-    bool doAll(int argc, char* argv[]);
+
+    bool handleArguments(int argc, char* argv[]);
+
+    std::vector<std::string>& const getTokens() { return tokens; }
 };
 
 #endif

@@ -7,12 +7,13 @@
 
 Arguments::Arguments() : cliInput(""), fileString("") {}
 
-bool Arguments::doAll(int argc, char* argv[]) {
+bool Arguments::handleArguments(int argc, char* argv[]) {
     bool success = false;
 
     //Handle either simulate keyboard input or file redirection.
     if(argc == 1) {
         handleFileRedirection();
+        tokenize(cliInput);
         success = true;
     }
 
@@ -30,12 +31,9 @@ bool Arguments::doAll(int argc, char* argv[]) {
             return false;
         }
         
+        tokenize(fileString);
         success = true;
     }
-
-    //After either input method, the cliInput string must be tokenized.
-    if(success)
-        tokenize();
 
     return success;
 }
@@ -72,7 +70,7 @@ bool Arguments::parseArgs(int argc, char* argv[]) {
         }
 
         //DEBUG
-        std::cout << cliInput << std::endl;
+        //std::cout << cliInput << std::endl;
         
         return true;
     }
@@ -105,9 +103,9 @@ void Arguments::handleFileRedirection() {
     return;
 }
 
-void Arguments::tokenize() {  
+void Arguments::tokenize(std::string str) {  
     //Parse the cliInput string for tokens and push into tokens vector.
-    std::stringstream ss(cliInput);
+    std::stringstream ss(str);
     std::string token;
     while(ss >> token) {
         tokens.push_back(token);
@@ -126,7 +124,15 @@ void Arguments::tokenize() {
 }
 
 bool Arguments::readFromFile(const std::string path) {
-    //TODO
-    std::cout << "check" << std::endl;
+    std::fstream inFile(path.c_str(), std::ios_base::in);
+
+    char c = 0;
+    while(inFile.get(c)) {
+        fileString.push_back(c);
+    }
+
+    inFile.close();
+
     return true;
+
 }
