@@ -5,14 +5,14 @@
 
 #include "Arguments.hpp"
 
-Arguments::Arguments() : cliInput(""), fileString("") {}
+Arguments::Arguments() : cliInput(""), fileContents("") {}
 
 bool Arguments::handleArguments(int argc, char* argv[]) {
     bool success = false;
 
     //Handle either simulate keyboard input or file redirection.
     if(argc == 1) {
-        handleFileRedirection();
+        handleFileRedirOrKeyboardSim();
         tokenize(cliInput);
         success = true;
     }
@@ -25,13 +25,13 @@ bool Arguments::handleArguments(int argc, char* argv[]) {
             return false;
         }
 
-        //Read entire file into fileString.
+        //Read entire file contents into fileString.
         if(!readFromFile(cliInput)) {
             std::cerr << "Error: Function: readFromFile(std::string)" << std::endl;
             return false;
         }
         
-        tokenize(fileString);
+        tokenize(fileContents);
         success = true;
     }
 
@@ -75,14 +75,14 @@ bool Arguments::parseArgs(int argc, char* argv[]) {
         return true;
     }
     else {
-        handleFileRedirection();
+        handleFileRedirOrKeyboardSim();
         return true;
     }
 
     return false;
 }
 
-void Arguments::handleFileRedirection() {
+void Arguments::handleFileRedirOrKeyboardSim() {
     /*
     Read entire cin buffer. Also handles simulated keyboard input.
     press "Enter" then "Ctrl + d" to end keyboard input.
@@ -93,13 +93,10 @@ void Arguments::handleFileRedirection() {
     }
 
     //DEBUG
-    std::cout << cliInput;
+    //std::cout << cliInput;
 
     //Clear the std::cin buffer.
     std::cin.ignore(std::numeric_limits<std::streamsize>::max());
-
-    std::cout << std::endl;
-
     return;
 }
 
@@ -113,26 +110,30 @@ void Arguments::tokenize(std::string str) {
 
 
     //DEBUG
-    std::cout << "TOKENS:\n";
+    /* std::cout << "TOKENS:\n";
     if(tokens.empty()) {
         std::cout << "-NO TOKENS-" << std::endl;
         return;
     }
     for(int i = 0; i < tokens.size(); ++i) {
         std::cout << "\"" << tokens[i] << "\"\n";
-    }
+    } */
 }
 
 bool Arguments::readFromFile(const std::string path) {
     std::fstream inFile(path.c_str(), std::ios_base::in);
 
+    if(!inFile.good()) {
+        inFile.close();
+        return false;
+    }
+
     char c = 0;
     while(inFile.get(c)) {
-        fileString.push_back(c);
+        fileContents.push_back(c);
     }
 
     inFile.close();
 
     return true;
-
 }

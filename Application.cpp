@@ -15,5 +15,14 @@ void Application::run(int argc, char* argv[]) {
         std::cerr << "Error: Arguments could not be handled." << std::endl;
     }
 
-    
+    bst = new BinarySearchTree();
+
+    bst->buildTree(arguments.getTokens());
+
+    //Output.
+    bst->printPreorder(bst->getRoot());
+    bst->printInorder(bst->getRoot());
+    bst->printPostOrder(bst->getRoot());
+
+    return;
 }

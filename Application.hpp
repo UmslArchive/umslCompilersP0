@@ -14,7 +14,7 @@ public:
     void run(int argc, char* argv[]);
 
 private:
-    BinarySearchTree bst;
+    BinarySearchTree* bst;
     Arguments arguments;
 };
 

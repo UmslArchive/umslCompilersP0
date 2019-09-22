@@ -16,11 +16,11 @@
 class Arguments {
 private:
     std::string cliInput;
-    std::string fileString;
+    std::string fileContents;
     std::vector<std::string> tokens;
 
     bool parseArgs(int argc, char* argv[]);
-    void handleFileRedirection();
+    void handleFileRedirOrKeyboardSim();
     void tokenize(std::string str);
     bool readFromFile(const std::string path);
 
@@ -29,7 +29,7 @@ public:
 
     bool handleArguments(int argc, char* argv[]);
 
-    std::vector<std::string>& const getTokens() { return tokens; }
+    const std::vector<std::string>& getTokens() const { return tokens; }
 };
 
 #endif
