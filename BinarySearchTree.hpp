@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <set>
 
 #include "Arguments.hpp"
 
@@ -19,7 +20,7 @@ struct Node {
     Node(int _key, std::string datum, Node* _left, Node* _right, Node* _parent);
 
     const int key;
-    std::vector<std::string> data;
+    std::set<std::string> data;
     Node* left;
     Node* right;
     Node* parent;

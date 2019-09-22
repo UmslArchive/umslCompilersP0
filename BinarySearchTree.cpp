@@ -10,8 +10,8 @@ Node::Node() : key(0), left(NULL), right(NULL), parent(NULL) {}
 
 Node::Node(int _key, std::string datum, Node* _left, Node* _right, Node* _parent) :
     key(_key), left(_left), right(_right), parent(_parent)
-{    
-    data.push_back(datum);
+{   
+    data.insert(datum);
 }
 
 //BinarySearchTree constructor.
@@ -48,7 +48,7 @@ Node* BinarySearchTree::insert(Node* node, const int key, std::string datum) {
 
     //Check for matching key.
     else if(key == node->key) {
-        node->data.push_back(datum);
+        node->data.insert(datum);
     }
 
     //Check left.
@@ -106,9 +106,9 @@ void BinarySearchTree::printInorder(Node* node, int level) {
             filename = "tree.inorder";
         }
         outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
-        for(int i = 0; i < node->data.size(); ++i) {
+        for(std::set<std::string>::iterator it = node->data.begin(); it != node->data.end(); ++it) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
-            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << *it << std::endl;
         }
         outFile.close();
 
@@ -139,9 +139,9 @@ void BinarySearchTree::printPreorder(Node* node, int level) {
             filename = "tree.preorder";
         }
         outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
-        for(int i = 0; i < node->data.size(); ++i) {
+        for(std::set<std::string>::iterator it = node->data.begin(); it != node->data.end(); ++it) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
-            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << *it << std::endl;
         }
         outFile.close();
 
@@ -176,9 +176,9 @@ void BinarySearchTree::printPostOrder(Node* node, int level) {
             filename = "tree.postorder";
         }
         outFile.open(filename.c_str(), std::ios_base::out | std::ios_base::app);
-        for(int i = 0; i < node->data.size(); ++i) {
+        for(std::set<std::string>::iterator it = node->data.begin(); it != node->data.end(); ++it) {
             //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
-            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << *it << std::endl;
         }
         outFile.close();
     }
