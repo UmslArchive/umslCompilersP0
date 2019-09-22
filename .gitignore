@@ -5,3 +5,6 @@ p0
 testFile
 testFile.fs19
 *.tree
+*.inorder
+*.preorder
+*.postorder

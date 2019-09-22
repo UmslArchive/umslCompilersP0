@@ -1,0 +1,9 @@
+INSTALL:
+	- Execute `make` from the shell while in the directory containing the source code.
+
+USAGE:
+	- `make clean` can be used to clean up output files. Not the best way to do it since you'll have to recompile, but I didn't feel like writing a bash script to do it.
+
+WARNING:
+	-Couple times I've compiled and then run and it would segfault, but then if you run `make clean` then `make` again, it no longer segfaults ever again, so I dunno.
+	just letting you know in case you encounter the same issue.
