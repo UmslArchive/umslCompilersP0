@@ -8,6 +8,7 @@
 
 #include "Arguments.hpp"
 #include "BinarySearchTree.hpp"
+#include <cstdio>
 
 class Application {
 public:
@@ -16,6 +17,7 @@ public:
 private:
     BinarySearchTree* bst;
     Arguments arguments;
+    Arguments::InvokeState outputState;
 };
 
 #endif

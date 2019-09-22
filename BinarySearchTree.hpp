@@ -7,9 +7,12 @@
 #define TREE_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <memory>
 #include <vector>
+
+#include "Arguments.hpp"
 
 struct Node {
     Node();
@@ -25,9 +28,13 @@ struct Node {
 class BinarySearchTree {
 private:
     Node* root;
+    
+    Arguments::InvokeState outputState;
+    std::string outFileName;
 
 public:
     BinarySearchTree();
+    BinarySearchTree(Arguments::InvokeState outputState, std::string fileName);
     ~BinarySearchTree();
 
     void buildTree(const std::vector<std::string>& data);
@@ -36,9 +43,9 @@ public:
     Node* search(const int key);
     int successor(const int key);
     int predecessor(const int key);
-    void printInorder(Node* node);
-    void printPreorder(Node* node);
-    void printPostOrder(Node* node);
+    void printInorder(Node* node, int level = 0);
+    void printPreorder(Node* node, int level = 0);
+    void printPostOrder(Node* node, int level = 0);
     int stringToKey(std::string str);
 
     Node* getRoot() const { return root; }

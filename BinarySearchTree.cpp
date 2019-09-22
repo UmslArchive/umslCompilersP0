@@ -17,6 +17,14 @@ Node::Node(int _key, std::string datum, Node* _left, Node* _right, Node* _parent
 //BinarySearchTree constructor.
 BinarySearchTree::BinarySearchTree() : root(NULL) {}
 
+BinarySearchTree::BinarySearchTree(Arguments::InvokeState _outputState, std::string fileName) :
+    outputState(_outputState), outFileName(fileName), root(NULL) 
+{
+    //DEBUG
+    //std::cout << "STATE: " << outputState << std::endl;
+    std::cout << "outFileName: " << outFileName << std::endl;
+}
+
 //Destructor
 BinarySearchTree::~BinarySearchTree() {
 
@@ -74,48 +82,107 @@ int BinarySearchTree::predecessor(const int key) {
     return 0;
 }
 
-void BinarySearchTree::printInorder(Node* node) {
+void BinarySearchTree::printInorder(Node* node, int level) {
     if(root == NULL) {
         std::cerr << "Cannot print empty tree." << std::endl;
         return;
     }
 
     if(node != NULL) {
-        printInorder(node->left);
-        for(int i = 0; i < node->data.size(); ++i) {
-            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+
+        //Set indent.
+        std::string indent = "";
+        for(int i = 0; i < level; ++i) {
+            indent.append("    ");
         }
-        printInorder(node->right);
+
+        printInorder(node->left, level + 1);
+
+        //Write to file.
+        std::fstream outFile;
+        std::string filename;
+        if(outputState == Arguments::InvokeState::FILE_READ) {
+            filename = outFileName + ".inorder";
+        }
+        else {
+            filename = "tree.inorder";
+        }
+        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        for(int i = 0; i < node->data.size(); ++i) {
+            //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        }
+        outFile.close();
+
+        printInorder(node->right, level + 1);
     }
 }
 
-void BinarySearchTree::printPreorder(Node* node) {
+void BinarySearchTree::printPreorder(Node* node, int level) {
     if(root == NULL) {
         std::cerr << "Cannot print empty tree." << std::endl;
         return;
     }
 
+    //Set indent.
     if(node != NULL) {
-        for(int i = 0; i < node->data.size(); ++i) {
-            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        std::string indent = "";
+        for(int i = 0; i < level; ++i) {
+            indent.append("    ");
         }
-        printPreorder(node->left);
-        printPreorder(node->right);
+        
+        //Write to file.
+        std::fstream outFile;
+        std::string filename;
+        if(outputState == Arguments::InvokeState::FILE_READ) {
+            filename = outFileName + ".preorder";
+        }
+        else {
+            filename = "tree.preorder";
+        }
+        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        for(int i = 0; i < node->data.size(); ++i) {
+            //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        }
+        outFile.close();
+
+        printPreorder(node->left, level + 1);
+        printPreorder(node->right, level + 1);
     }
 }
 
-void BinarySearchTree::printPostOrder(Node* node) {
+void BinarySearchTree::printPostOrder(Node* node, int level) {
     if(root == NULL) {
         std::cerr << "Cannot print empty tree." << std::endl;
         return;
     }
 
+    //Set indent.
     if(node != NULL) {
-        printPostOrder(node->left);
-        printPostOrder(node->right);
-        for(int i = 0; i < node->data.size(); ++i) {
-            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        std::string indent = "";
+        for(int i = 0; i < level; ++i) {
+            indent.append("    ");
         }
+
+        printPostOrder(node->left, level + 1);
+        printPostOrder(node->right, level + 1);
+
+        //Write to file.
+        std::fstream outFile;
+        std::string filename;
+        if(outputState == Arguments::InvokeState::FILE_READ) {
+            filename = outFileName + ".postorder";
+        }
+        else {
+            filename = "tree.postorder";
+        }
+        outFile.open(filename, std::ios_base::out | std::ios_base::app);
+        for(int i = 0; i < node->data.size(); ++i) {
+            //std::cout << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+            outFile << indent << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        }
+        outFile.close();
     }
 }
 

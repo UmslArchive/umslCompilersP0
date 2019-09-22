@@ -5,7 +5,7 @@
 
 #include "Arguments.hpp"
 
-Arguments::Arguments() : cliInput(""), fileContents("") {}
+Arguments::Arguments() : cliInput(""), infileName(""), fileContents("") {}
 
 bool Arguments::handleArguments(int argc, char* argv[]) {
     bool success = false;
@@ -14,6 +14,7 @@ bool Arguments::handleArguments(int argc, char* argv[]) {
     if(argc == 1) {
         handleFileRedirOrKeyboardSim();
         tokenize(cliInput);
+        outputState = REDIRECTED;
         success = true;
     }
 
@@ -32,6 +33,7 @@ bool Arguments::handleArguments(int argc, char* argv[]) {
         }
         
         tokenize(fileContents);
+        outputState = FILE_READ;
         success = true;
     }
 
@@ -51,6 +53,9 @@ bool Arguments::parseArgs(int argc, char* argv[]) {
     else if(argc == 2) {
         //Retrieve the file name from the argument list.
         cliInput = std::string(argv[1]);
+        
+        //Save the name of the file without extension.
+        infileName = cliInput;
 
         //Find the last occurence of '.' 
         std::string::size_type pos = cliInput.find_last_of(".");
@@ -59,7 +64,7 @@ bool Arguments::parseArgs(int argc, char* argv[]) {
         If the position is not the end of the string, append the .fs19 ext.
         This also handles the case where a filename contains other periods.
         */
-        if(pos != std::string::npos) {
+        if(pos != std::string::npos) {            
             std::string extension = cliInput.substr(pos + 1);
             if(extension != "fs19") {
                 cliInput.append(".fs19");

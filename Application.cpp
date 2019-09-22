@@ -15,8 +15,19 @@ void Application::run(int argc, char* argv[]) {
         std::cerr << "Error: Arguments could not be handled." << std::endl;
     }
 
-    bst = new BinarySearchTree();
+    //Remove already existing files.
+    remove("tree.inorder");
+    remove("tree.preorder");
+    remove("tree.postorder");
+    std::string file = arguments.getInfileName() + ".inorder";
+    remove(file.c_str());
+    file = arguments.getInfileName() + ".preorder";
+    remove(file.c_str());
+    file = arguments.getInfileName() + ".postorder";
+    remove(file.c_str());
 
+    //Build the tree.
+    bst = new BinarySearchTree(arguments.getState(), arguments.getInfileName());
     bst->buildTree(arguments.getTokens());
 
     //Output.

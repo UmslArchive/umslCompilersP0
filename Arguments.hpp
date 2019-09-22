@@ -14,8 +14,25 @@
 #include <fstream>
 
 class Arguments {
+public:
+    Arguments();
+
+    enum InvokeState {
+        FILE_READ,
+        REDIRECTED
+    };
+
+    bool handleArguments(int argc, char* argv[]);
+
+    const std::vector<std::string>& getTokens() const { return tokens; }
+    InvokeState getState() { return outputState; }
+    std::string getInfileName() { return infileName; }
+
 private:
+    InvokeState outputState;
+
     std::string cliInput;
+    std::string infileName;
     std::string fileContents;
     std::vector<std::string> tokens;
 
@@ -23,13 +40,6 @@ private:
     void handleFileRedirOrKeyboardSim();
     void tokenize(std::string str);
     bool readFromFile(const std::string path);
-
-public:
-    Arguments();
-
-    bool handleArguments(int argc, char* argv[]);
-
-    const std::vector<std::string>& getTokens() const { return tokens; }
 };
 
 #endif
