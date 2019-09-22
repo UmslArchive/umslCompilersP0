@@ -83,18 +83,40 @@ void BinarySearchTree::printInorder(Node* node) {
     if(node != NULL) {
         printInorder(node->left);
         for(int i = 0; i < node->data.size(); ++i) {
-            std::cout << "Key: " << node->key << ": " << node->data.at(i) << std::endl;
+            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
         }
         printInorder(node->right);
     }
 }
 
 void BinarySearchTree::printPreorder(Node* node) {
-    
+    if(root == NULL) {
+        std::cerr << "Cannot print empty tree." << std::endl;
+        return;
+    }
+
+    if(node != NULL) {
+        for(int i = 0; i < node->data.size(); ++i) {
+            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        }
+        printPreorder(node->left);
+        printPreorder(node->right);
+    }
 }
 
 void BinarySearchTree::printPostOrder(Node* node) {
+    if(root == NULL) {
+        std::cerr << "Cannot print empty tree." << std::endl;
+        return;
+    }
 
+    if(node != NULL) {
+        printPostOrder(node->left);
+        printPostOrder(node->right);
+        for(int i = 0; i < node->data.size(); ++i) {
+            std::cout << "Key " << node->key << ": " << node->data.at(i) << std::endl;
+        }
+    }
 }
 
 int BinarySearchTree::stringToKey(std::string str) {
