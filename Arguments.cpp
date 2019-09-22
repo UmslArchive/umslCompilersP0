@@ -120,8 +120,8 @@ void Arguments::tokenize() {
         std::cout << "-NO TOKENS-" << std::endl;
         return;
     }
-    for(const auto &token : tokens) {
-        std::cout << "\"" << token << "\"\n";
+    for(int i = 0; i < tokens.size(); ++i) {
+        std::cout << "\"" << tokens[i] << "\"\n";
     }
 }
 
